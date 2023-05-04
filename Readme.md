@@ -28,54 +28,34 @@ List<String> list = Arrays.asList(temp.split(","));
 System.out.println(list);
     
     
- import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+public class EnumExample {
+  
+  // Define an enum
+  enum Color {
+    RED, GREEN, BLUE;
+  }
 
-public class MyJavaFXApp extends Application {
+  public static void main(String[] args) {
+    // Use the enum
+    Color color = Color.RED;
+    System.out.println("The selected color is: " + color);
 
-    @Override
-    public void start(Stage stage) {
-        // Create a button
-        Button button = new Button("Click me!");
-
-        // Set the action to be performed when the button is clicked
-        button.setOnAction(event -> {
-            // Create a label with the message to be displayed
-            Label label = new Label("Hello, world!");
-
-            // Create a layout for the label and set its alignment
-            VBox layout = new VBox(label);
-            layout.setAlignment(Pos.CENTER);
-
-            // Create a scene with the layout and set its size
-            Scene scene = new Scene(layout, 300, 200);
-
-            // Create a new stage and set its scene
-            Stage popup = new Stage();
-            popup.setScene(scene);
-
-            // Show the popup window
-            popup.show();
-        });
-
-        // Create a layout for the button and set its alignment
-        VBox layout = new VBox(button);
-        layout.setAlignment(Pos.CENTER);
-
-        // Create a scene with the layout and set its size
-        Scene scene = new Scene(layout, 300, 200);
-
-        // Set the stage's scene and show it
-        stage.setScene(scene);
-        stage.show();
+    // Loop through all the enum values
+    for (Color c : Color.values()) {
+      System.out.println("Enum value: " + c);
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    // Use the enum in a switch statement
+    switch (color) {
+      case RED:
+        System.out.println("The color is red");
+        break;
+      case GREEN:
+        System.out.println("The color is green");
+        break;
+      case BLUE:
+        System.out.println("The color is blue");
+        break;
     }
+  }
 }
