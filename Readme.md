@@ -22,3 +22,7 @@ try (InputStream in = getClass().getResourceAsStream("./config.properties");
 } catch (IOException e) {
     e.printStackTrace();
 }
+
+String temp = "aaa,bbbb,ccccc";
+List<String> list = Arrays.asList(temp.split(","));
+System.out.println(list);
