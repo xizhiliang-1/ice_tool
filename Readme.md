@@ -41,3 +41,10 @@ System.out.println(list);
     logging.file=baeldung-disabled-console.log
     
     
+    @echo off
+set java=
+for /f "delims=" %%a in ('where javaw') do @set java=%%a
+%java% -jar showme.jar --spring.config.name=custom-config,application
+
+    
+    
