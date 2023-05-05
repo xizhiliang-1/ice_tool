@@ -37,3 +37,7 @@ System.out.println(list);
         <appender-ref ref="FILE" />
     </root>
 </configuration>
+
+    logging.file=baeldung-disabled-console.log
+    
+    
