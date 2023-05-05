@@ -27,35 +27,13 @@ String temp = "aaa,bbbb,ccccc";
 List<String> list = Arrays.asList(temp.split(","));
 System.out.println(list);
     
-    
-public class EnumExample {
-  
-  // Define an enum
-  enum Color {
-    RED, GREEN, BLUE;
-  }
-
-  public static void main(String[] args) {
-    // Use the enum
-    Color color = Color.RED;
-    System.out.println("The selected color is: " + color);
-
-    // Loop through all the enum values
-    for (Color c : Color.values()) {
-      System.out.println("Enum value: " + c);
-    }
-
-    // Use the enum in a switch statement
-    switch (color) {
-      case RED:
-        System.out.println("The color is red");
-        break;
-      case GREEN:
-        System.out.println("The color is green");
-        break;
-      case BLUE:
-        System.out.println("The color is blue");
-        break;
-    }
-  }
-}
+    <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource=
+      "org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource=
+      "org/springframework/boot/logging/logback/file-appender.xml" />
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
