@@ -46,5 +46,18 @@ set java=
 for /f "delims=" %%a in ('where javaw') do @set java=%%a
 %java% -jar showme.jar --spring.config.name=custom-config,application
 
-    
+打开IntelliJ IDEA并确保您正在查看项目的文件视图。
+
+使用快捷键Shift + Shift 或者点击菜单栏中的"Find" -> "Find in Path"来打开搜索窗口。
+
+在搜索窗口中，您将看到一个文本框和一些选项。在文本框中，输入您要搜索的第一个关键词。
+
+在搜索窗口底部的选项中，选择"Regular Expression"（正则表达式）复选框。这将使您能够使用正则表达式来进一步定义搜索模式。
+
+在文本框中，输入一个正则表达式来匹配同时包含第二个关键词的文件。例如，如果您要搜索同时包含"keyword1"和"keyword2"的文件，您可以使用正则表达式(?=.*keyword1)(?=.*keyword2).*。
+
+点击搜索窗口中的"Find"按钮或按下回车键，IntelliJ IDEA将开始搜索并显示包含两个关键词的所有文件的结果。
+
+
+请注意，这是一个使用正则表达式的高级搜索方法，确保您在使用正则表达式时有一定的了解。如果您只是简单地想搜索两个关键词，而不使用正则表达式，您可以跳过步骤4并在文本框中输入两个关键词，用空格分隔它们。
     
