@@ -61,3 +61,48 @@ for /f "delims=" %%a in ('where javaw') do @set java=%%a
 
 请注意，这是一个使用正则表达式的高级搜索方法，确保您在使用正则表达式时有一定的了解。如果您只是简单地想搜索两个关键词，而不使用正则表达式，您可以跳过步骤4并在文本框中输入两个关键词，用空格分隔它们。
     
+    
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class MenuBarExample extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+        GridPane gridPane = new GridPane();
+
+        // Create a MenuBar
+        MenuBar menuBar = new MenuBar();
+
+        // Create a Menu
+        Menu fileMenu = new Menu("File");
+
+        // Create MenuItems and add them to the Menu
+        MenuItem openMenuItem = new MenuItem("Open");
+        MenuItem saveMenuItem = new MenuItem("Save");
+        fileMenu.getItems().addAll(openMenuItem, saveMenuItem);
+
+        // Add the Menu to the MenuBar
+        menuBar.getMenus().add(fileMenu);
+
+        // Add the MenuBar to the GridPane
+        gridPane.add(menuBar, 0, 0); // Add it to the first row and first column
+
+        // Add other content to the GridPane
+        // ...
+
+        Scene scene = new Scene(gridPane, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Menu Bar Example");
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
