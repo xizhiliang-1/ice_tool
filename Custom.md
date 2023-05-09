@@ -1,46 +1,77 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-public class BorderPaneAndGridPaneExample extends Application {
+public class MenuItemWithAlertExample extends Application {
     @Override
     public void start(Stage primaryStage) {
-        BorderPane root = new BorderPane();
+        MenuItem menuItem = new MenuItem("Open URL");
 
-        // Create a MenuBar
-        MenuBar menuBar = new MenuBar();
+        menuItem.setOnAction(event -> {
+            // Create an Alert
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("URL Information");
+            alert.setHeaderText(null);
 
-        // Create a Menu
-        Menu fileMenu = new Menu("File");
+            // Create a TextFlow for the content
+            TextFlow textFlow = new TextFlow();
+            textFlow.setPrefWidth(400); // Set desired width
 
-        // Create MenuItems and add them to the Menu
-        MenuItem openMenuItem = new MenuItem("Open");
-        MenuItem saveMenuItem = new MenuItem("Save");
-        fileMenu.getItems().addAll(openMenuItem, saveMenuItem);
+            // Create text nodes with selectable URLs
+            Text text1 = new Text("This is some text. ");
+            Text text2 = new Text("Click here to open a URL.");
+            text2.setStyle("-fx-fill: blue; -fx-underline: true; -fx-cursor: hand;");
 
-        // Add the Menu to the MenuBar
-        menuBar.getMenus().add(fileMenu);
+            // Add event handler to open the URL in a browser
+            text2.setOnMouseClicked(clickEvent -> {
+                // Open the URL in a browser
+                String url = "https://example.com";
+                getHostServices().showDocument(url);
+            });
 
-        // Set the MenuBar at the top of the BorderPane
-        root.setTop(menuBar);
+            // Add the text nodes to the TextFlow
+            textFlow.getChildren().addAll(text1, text2);
 
-        // Create a GridPane
-        GridPane gridPane = new GridPane();
+            // Set the content of the Alert to the TextFlow
+            alert.getDialogPane().setContent(textFlow);
 
-        // Add content to the GridPane
+            // Create a Button for copy operation
+            Button copyButton = new Button("Copy");
+            ButtonBar.setButtonData(copyButton, ButtonBar.ButtonData.OK_DONE);
+
+            // Add event handler to perform copy operation
+            copyButton.setOnAction(copyEvent -> {
+                Clipboard clipboard = Clipboard.getSystemClipboard();
+                ClipboardContent content = new ClipboardContent();
+                content.putString(text2.getText()); // Copy the URL
+                clipboard.setContent(content);
+            });
+
+            // Add the copy button to the Alert's ButtonBar
+            alert.getButtonTypes().add(ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getDialogPane().setContent(new VBox(10, textFlow, copyButton));
+
+            // Show the Alert window
+            alert.showAndWait();
+        });
+
+        // Add the MenuItem to a Menu or MenuBar
         // ...
 
-        // Set the GridPane at the center of the BorderPane
-        root.setCenter(gridPane);
+        // Create a Scene and add it to the Stage
+        // ...
 
-        Scene scene = new Scene(root, 800, 600);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("BorderPane and GridPane Example");
+        primaryStage.setTitle("Menu Item with Alert Example");
         primaryStage.show();
     }
 
