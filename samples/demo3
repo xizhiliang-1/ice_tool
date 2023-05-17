@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Retrieve the GitHub repository
+                git 'https://github.com/your-username/your-repository.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Execute the shell script file
+                sh './your-script.sh'
+            }
+        }
+        
+        // Add more stages as needed
+        
+        stage('Cleanup') {
+            steps {
+                // Cleanup steps if required
+            }
+        }
+    }
+}
